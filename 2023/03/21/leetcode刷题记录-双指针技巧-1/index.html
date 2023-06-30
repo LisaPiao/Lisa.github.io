@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>leetcode刷题记录-双指针技巧 | LisaPiao</title><meta name="author" content="LisaPiao"><meta name="copyright" content="LisaPiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="双指针技巧lc-21. 合并两个有序链表 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。  数据说明：  两个链表的节点数目范围是 [0, 50] -100 &lt;&#x3D; Node.val &lt;&#x3D; 100 l1 和 l2 均按 非递减顺序 排列    引入哨兵头结点，避免处理边界处的空指针。 双指针技巧 递归关键是：递归条件；递归基；递归内容 复">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode刷题记录-双指针技巧">
+<meta property="og:url" content="https://lisapiao.github.io/2023/03/21/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%8F%8C%E6%8C%87%E9%92%88%E6%8A%80%E5%B7%A7-1/index.html">
+<meta property="og:site_name" content="LisaPiao">
+<meta property="og:description" content="双指针技巧lc-21. 合并两个有序链表 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。  数据说明：  两个链表的节点数目范围是 [0, 50] -100 &lt;&#x3D; Node.val &lt;&#x3D; 100 l1 和 l2 均按 非递减顺序 排列    引入哨兵头结点，避免处理边界处的空指针。 双指针技巧 递归关键是：递归条件；递归基；递归内容 复">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lisapiao.github.io/img/11.jpg">
+<meta property="article:published_time" content="2023-03-20T16:00:52.000Z">
+<meta property="article:modified_time" content="2023-04-17T14:17:06.469Z">
+<meta property="article:author" content="LisaPiao">
+<meta property="article:tag" content="leetCode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lisapiao.github.io/img/11.jpg"><link rel="shortcut icon" href="/img/11.jpg"><link rel="canonical" href="https://lisapiao.github.io/2023/03/21/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%8F%8C%E6%8C%87%E9%92%88%E6%8A%80%E5%B7%A7-1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'leetcode刷题记录-双指针技巧',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-17 22:17:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/11.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/background.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="LisaPiao"><span class="site-name">LisaPiao</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">leetcode刷题记录-双指针技巧</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-03-20T16:00:52.000Z" title="Created 2023-03-21 00:00:52">2023-03-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-04-17T14:17:06.469Z" title="Updated 2023-04-17 22:17:06">2023-04-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="leetcode刷题记录-双指针技巧"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="双指针技巧"><a href="#双指针技巧" class="headerlink" title="双指针技巧"></a>双指针技巧</h1><h2 id="lc-21-合并两个有序链表"><a href="#lc-21-合并两个有序链表" class="headerlink" title="lc-21. 合并两个有序链表"></a>lc-21. 合并两个有序链表</h2><blockquote>
+<p>将两个升序链表合并为一个新的 <strong>升序</strong> 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 </p>
+<p>数据说明：</p>
+<ul>
+<li>两个链表的节点数目范围是 <code>[0, 50]</code></li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+<li><code>l1</code> 和 <code>l2</code> 均按 <strong>非递减顺序</strong> 排列</li>
+</ul>
+</blockquote>
+<ol>
+<li>引入哨兵头结点，避免处理边界处的空指针。</li>
+<li>双指针技巧</li>
+<li>递归关键是：递归条件；递归基；递归内容</li>
+<li>复杂度是O(m+n)</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l1 == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l2 == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(l1-&gt;val &lt; l2-&gt;val) &#123;</span><br><span class="line">            l1-&gt;next = <span class="built_in">mergeTwoLists</span>(l1-&gt;next, l2);</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            l2-&gt;next = <span class="built_in">mergeTwoLists</span>(l1, l2-&gt;next);</span><br><span class="line">            <span class="keyword">return</span> l2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="lc-86-分隔链表"><a href="#lc-86-分隔链表" class="headerlink" title="lc-86. 分隔链表"></a>lc-86. 分隔链表</h2><blockquote>
+<p>给出一个链表的头节点 head 和一个特定值 x ，要求对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前，且要保留两个分区中每个节点的初始相对位置。</p>
+<p>数据范围：</p>
+<ul>
+<li>链表中节点的数目在范围 <code>[0, 200]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+<li><code>-200 &lt;= x &lt;= 200</code></li>
+</ul>
+</blockquote>
+<ol>
+<li>双指针的反向运用，此处用迭代</li>
+<li>复杂度O(n)</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">partition</span><span class="params">(ListNode* head, <span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        ListNode* small = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        ListNode* smallHead = small;</span><br><span class="line">        ListNode* large = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        ListNode* largeHead = large;</span><br><span class="line">        <span class="keyword">while</span> (head != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (head-&gt;val &lt; x) &#123;</span><br><span class="line">                small-&gt;next = head;</span><br><span class="line">                small = small-&gt;next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                large-&gt;next = head;</span><br><span class="line">                large = large-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        large-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        small-&gt;next = largeHead-&gt;next;</span><br><span class="line">        <span class="keyword">return</span> smallHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="acwing-799-最长连续不重复子序列"><a href="#acwing-799-最长连续不重复子序列" class="headerlink" title="acwing-799. 最长连续不重复子序列"></a>acwing-799. 最长连续不重复子序列</h2><blockquote>
+<p>给定一个长度为 n 的整数序列，请找出最长的不包含重复的数的连续区间，输出它的长度。</p>
+<p>数据范围：[1, 10^5]</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"><span class="type">int</span> a[N], s[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n, r = <span class="number">0</span>;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; ++ i)</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">        ++ s[a[i]];</span><br><span class="line">        <span class="keyword">while</span> (s[a[i]] &gt; <span class="number">1</span>) -- s[a[j++]]; <span class="comment">// 先减次数后右移</span></span><br><span class="line">        r = <span class="built_in">max</span>(r, i - j + <span class="number">1</span>) ;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; r;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="acwing-800-数组元素的目标和"><a href="#acwing-800-数组元素的目标和" class="headerlink" title="acwing-800. 数组元素的目标和"></a>acwing-800. 数组元素的目标和</h2><blockquote>
+<p>给定两个升序排序的有序数组 A和 B，以及一个目标值 x。</p>
+<p>数组下标从 00 开始。</p>
+<p>请你求出满足 A[i]+B[j]&#x3D;x的数对 (i,j)。</p>
+<p>数据保证有唯一解。</p>
+<p>数组长度不超过 10^5。<br>        同一数组内元素各不相同。<br>        1≤数组元素≤10^9</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, k;</span><br><span class="line"><span class="type">int</span> a[N], b[N];</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> read(x) scanf(<span class="string">&quot;%d&quot;</span>,&amp;x)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(n), <span class="built_in">read</span>(m), <span class="built_in">read</span>(k);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) <span class="built_in">read</span>(a[i]);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i ++ ) <span class="built_in">read</span>(b[i]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = m - <span class="number">1</span>; i &lt; n; i ++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; a[i] + b[j] &gt; k) j --;</span><br><span class="line">        <span class="keyword">if</span>(j &gt;= <span class="number">0</span> &amp;&amp; a[i] + b[j] == k) <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, i, j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="acwing-2816-判断子序列"><a href="#acwing-2816-判断子序列" class="headerlink" title="acwing-2816. 判断子序列"></a>acwing-2816. 判断子序列</h2><blockquote>
+<p>给定一个长度为 n的整数序列 a1,a2,…,an以及一个长度为 m的整数序列 b1,b2,…,bm</p>
+<p>请你判断 a序列是否为 b 序列的子序列。</p>
+<p>子序列指序列的一部分项按<strong>原有次序排列</strong>而得的序列.</p>
+<p>1≤n≤m≤10^5<br>        −10^9≤ai,bi≤10 ^9</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>;j &lt; m; j++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;b[j]);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>;j &lt; m; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; n&amp;&amp;a[i] == b[j])  i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i == n) <span class="built_in">puts</span>(<span class="string">&quot;Yes&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;No&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://LisaPiao.github.io">LisaPiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lisapiao.github.io/2023/03/21/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%8F%8C%E6%8C%87%E9%92%88%E6%8A%80%E5%B7%A7-1/">https://lisapiao.github.io/2023/03/21/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%8F%8C%E6%8C%87%E9%92%88%E6%8A%80%E5%B7%A7-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/leetCode/">leetCode</a></div><div class="post_share"><div class="social-share" data-image="/img/11.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/21/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-%E4%BA%8C%E5%8F%89%E6%A0%91/" title="leetcode刷题记录-二叉树"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">leetcode刷题记录-二叉树</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/20/cs-61a/" title="cs 61a"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">cs 61a</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/11.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LisaPiao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/LisaPiao"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88%E6%8A%80%E5%B7%A7"><span class="toc-number">1.</span> <span class="toc-text">双指针技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#lc-21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="toc-number">1.1.</span> <span class="toc-text">lc-21. 合并两个有序链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lc-86-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.</span> <span class="toc-text">lc-86. 分隔链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#acwing-799-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E4%B8%8D%E9%87%8D%E5%A4%8D%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">1.3.</span> <span class="toc-text">acwing-799. 最长连续不重复子序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#acwing-800-%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E7%9B%AE%E6%A0%87%E5%92%8C"><span class="toc-number">1.4.</span> <span class="toc-text">acwing-800. 数组元素的目标和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#acwing-2816-%E5%88%A4%E6%96%AD%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">1.5.</span> <span class="toc-text">acwing-2816. 判断子序列</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/30/CO-learning/" title="CO learning">CO learning</a><time datetime="2023-06-30T09:12:53.000Z" title="Created 2023-06-30 17:12:53">2023-06-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/08/AIGC%E4%B8%8D%E5%AE%8C%E5%85%A8%E5%AD%A6%E4%B9%A0/" title="AIGC不完全学习">AIGC不完全学习</a><time datetime="2023-04-08T03:08:35.000Z" title="Created 2023-04-08 11:08:35">2023-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/07/CS231n/" title="CS231n">CS231n</a><time datetime="2023-04-07T14:53:52.000Z" title="Created 2023-04-07 22:53:52">2023-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/07/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80-%E6%8E%92%E5%BA%8F/" title="算法基础-排序">算法基础-排序</a><time datetime="2023-04-07T14:23:04.000Z" title="Created 2023-04-07 22:23:04">2023-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/04/yolov5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="yolov5学习笔记">yolov5学习笔记</a><time datetime="2023-04-03T16:16:46.000Z" title="Created 2023-04-04 00:16:46">2023-04-04</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By LisaPiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'https://lisapiao.github.io/2023/03/21/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%8F%8C%E6%8C%87%E9%92%88%E6%8A%80%E5%B7%A7-1/'
+    this.page.identifier = '/2023/03/21/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%8F%8C%E6%8C%87%E9%92%88%E6%8A%80%E5%B7%A7-1/'
+    this.page.title = 'leetcode刷题记录-双指针技巧'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
